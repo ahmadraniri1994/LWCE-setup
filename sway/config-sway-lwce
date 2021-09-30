@@ -1,0 +1,230 @@
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+# font for title bar an swaybar
+font pango:monospace 8
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Your preferred terminal emulator
+set $term foot
+
+# Your preferred application launcher
+set $menud wofi --show drun --allow-images
+set $menu wofi --show run
+
+# Default wallpaper (more resolutions are available in /usr/local/share/backgrounds/sway/)
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1136x640.png fill
+
+### Input configuration, my device is "2:7:SynPS/2_Synaptics_TouchPad" but we can pass it to "*".
+
+   input "*" {
+       dwt enabled
+       tap enabled
+       natural_scroll enabled
+       middle_emulation enabled
+   }
+
+### Key bindings
+
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+q kill
+
+    # Start your launcher
+    bindsym $mod+r exec $menu
+    bindsym $mod+z exec $menud
+    bindsym $mod+Shift+d exec fuzzel -i breeze -r 0 -b 2b303b80 -w 50 -t ccffffff
+
+    # resize ala hikari wm
+    bindsym Mod1+Down resize grow down 20px
+    bindsym Mod1+Right resize grow right 20px
+    bindsym Mod1+Up resize grow down -20px
+    bindsym Mod1+Left resize grow right -20px
+
+    # Move ala hikari wm
+    bindsym $mod+Shift+c move position center
+    bindsym $mod+d focus down
+    bindsym $mod+u focus up
+#    bindsym Ctrl+Right focus right
+#    bindsym Ctrl+Left focus left
+#    bindsym $mod+Shift+Left move position 0 100 
+#    bindsym $mod+Shift+Right move position 690 100
+
+    #Screenshot
+    bindsym $mod+p exec grimshot save screen ~/Pictures/grim-$(date +'%Y-%m-%d-%H-%M-%S').png
+    bindsym $mod+Shift+p exec grimshot save window ~/Pictures/grim-$(date +'%Y-%m-%d-%H-%M-%S').png
+    bindsym $mod+Shift+a exec grimshot save area ~/Pictures/grim-$(date +'%Y-%m-%d-%H-%M-%S').png
+    bindsym XF86AudioMute exec pulsemixer --toggle-mute 
+    bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -5
+    bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +5
+    bindsym Mod4+tab exec swaymsg [con_id=$(swaymsg -t get_tree | /home/ahmad/bin/sway-cycle t)] focus
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal 
+
+    # Reload the configuration file
+     bindsym $mod+Shift+r reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m ' Do you really want to exit sway?' -b 'Yes, exit sway' 'swaymsg exit'
+
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left 
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left 40px
+    bindsym $mod+Shift+$down move down 40px
+    bindsym $mod+Shift+$up move up 40px
+    bindsym $mod+Shift+$right move right 40px
+
+    # Ditto, with arrow keys
+    bindsym $mod+Left move left 40px
+    bindsym $mod+Down move down 40px
+    bindsym $mod+Up move up 40px
+    bindsym $mod+Right move right 40px
+
+    #move to edge
+    bindsym $mod+Shift+Left exec ~/bin/swaymove left
+    bindsym $mod+Shift+Right exec ~/bin/swaymove right
+    bindsym $mod+Shift+Down exec ~/bin/swaymove bottom
+    bindsym $mod+Shift+Up exec ~/bin/swaymove top
+
+#
+# Workspaces:
+#
+    # Switch to workspace
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
+
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
+    bindsym $mod+Shift+0 move container to workspace 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+    bindsym $mod+m splitt
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+t layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+Shift+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+f floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+    bindsym Mod1+c focus child
+    bindsym Mod1+p focus prev
+    bindsym Mod1+f focus floating
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 40px
+    bindsym $down resize grow height 40px
+    bindsym $up resize shrink height 40px
+    bindsym $right resize grow width 40px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 40px
+    bindsym Down resize grow down 40px
+    bindsym Up resize shrink height 40px
+    bindsym Right resize grow right 40px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+s mode "resize"
+
+mode "floating" {
+    bindsym $mod+Shift+c move position center 
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym Mod1+Shift+f mode "floating"
+
+#full wayland, ditch X 
+xwayland disable
+
+#menu 
+for_window [app_id="xfce4-appfinder"] floating enable
+for_window [app_id="xfce4-appfinder"] move position 0 0 
+
+#uncomment if you want terminal to stay float
+#for_window [app_id="foot"] floating enable
+
+for_window [app_id="mpv"] floating enable
+#for_window [app_id="pcmanfm-qt"] floating enable
+seat seat0 xcursor_theme Adwaita 24
+
+#default workspace is tabbed, I prefer tabbed over tile.
+workspace_layout tabbed
+
+# yambar autostart, I prefer yambar over waybar
+exec --no-startup-id yambar -c /home/ahmad/.config/yambar/config-sway.yml  
+
+include /usr/etc/sway/config.d/*
