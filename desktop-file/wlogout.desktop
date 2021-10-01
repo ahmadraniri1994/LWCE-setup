@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Wayland Logout
+Exec=wlogout
+Terminal=false
+Icon=/usr/share/icons/nuoveXT2/48x48/apps/gnome-logout.png
+Type=Application
+Categories=Application;Utility;
+#MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;text/xml;application/xhtml_xml;

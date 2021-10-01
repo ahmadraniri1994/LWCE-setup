@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Icecat For Wayland
+Exec=/usr/bin/icecat --display $WAYLAND_DISPLAY
+#Icon=/home/ahmad/.icons/Papirus/32x32/apps/deepin-show-desktop.svg
+Terminal=false
+Type=Application

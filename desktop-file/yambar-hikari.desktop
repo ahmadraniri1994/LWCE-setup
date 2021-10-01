@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Yambar For Hikari 
+Exec=yambar -c /home/ahmad/.config/yambar/config-hikari.yml  
+Terminal=false
+#Icon=/mnt/BE4C32174C31CAC3/linux/chromium/chromium/ungoogled-chromium_91.0.4472.77_1.vaapi_linux/product_logo_48.png
+Type=Application
+Categories=Application;Network;WebBrowser;
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;text/xml;application/xhtml_xml;
