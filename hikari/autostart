@@ -1,0 +1,2 @@
+yambar -c ~/.config/yambar/config-hikari.yml
+#waybar -c ~/.config/waybar-hikari/config2 -s ~/.config/waybar-hikari/style2.css
