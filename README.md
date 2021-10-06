@@ -4,6 +4,9 @@ What is LWCE?
 
 LWCE (Lightweight Wayland Compositor Environment) is a setup which try to mimic LXDE for wayland, it consists of some lightweight tools.
 
+![LWCE](https://github.com/ahmadraniri1994/LWCE-setup/blob/main/unjuk1.png "LWCE")
+![LWCE](https://github.com/ahmadraniri1994/LWCE-setup/blob/main/unjuk2.png "LWCE")
+
 The lists of lightweight tools or apps and alternative of LXDE components :
 
 1. Window manager : Hikari.
