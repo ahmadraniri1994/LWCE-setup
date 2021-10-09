@@ -1,4 +1,4 @@
-# Logo key. Use Mod1 for Alt.
+#key. Use Mod1 for Alt.
 set $mod Mod4
 
 # font for title bar an swaybar
@@ -18,7 +18,9 @@ set $menud wofi --show drun --allow-images
 set $menu wofi --show run
 
 # Default wallpaper (more resolutions are available in /usr/local/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1136x640.png fill
+output * bg /home/ahmad/Pictures/lwce-wallpaper.png fill 
+
+#/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1136x640.png fill
 
 ### Input configuration, my device is "2:7:SynPS/2_Synaptics_TouchPad" but we can pass it to "*".
 
@@ -162,6 +164,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1136x640.png fill
     bindsym Mod1+c focus child
     bindsym Mod1+p focus prev
     bindsym Mod1+f focus floating
+    bindsym Mod3 seat seat0 cursor press 273
 #
 # Scratchpad:
 #
@@ -193,19 +196,23 @@ mode "resize" {
     bindsym Up resize shrink height 40px
     bindsym Right resize grow right 40px
 
+    #floating-modifier
+    bindsym Mod1+z floating_modifier Mod1 inverse
+
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+Shift+s mode "resize"
 
-mode "floating" {
+mode "test" {
     bindsym $mod+Shift+c move position center 
+    bindsym Menu seat seat0 cursor press 273
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym Mod1+Shift+f mode "floating"
+bindsym Mod1+Shift+f mode "test"
 
 #full wayland, ditch X 
 xwayland disable
@@ -214,6 +221,14 @@ xwayland disable
 for_window [app_id="xfce4-appfinder"] floating enable
 for_window [app_id="xfce4-appfinder"] move position 0 0 
 
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="pavucontrol"] exec ~/bin/swaymove top-right
+
+for_window [app_id="connman-gtk"] floating enable
+for_window [app_id="connman-gtk"] exec ~/bin/swaymove top-right
+
+for_window [app_id="osmo"] floating enable
+for_window [app_id="osmo"] exec ~/bin/swaymove mid-top
 #uncomment if you want terminal to stay float
 #for_window [app_id="foot"] floating enable
 
@@ -225,6 +240,6 @@ seat seat0 xcursor_theme Adwaita 24
 workspace_layout tabbed
 
 # yambar autostart, I prefer yambar over waybar
-exec --no-startup-id yambar -c /home/ahmad/.config/yambar/config-sway.yml  
+exec --no-startup-id yambar -c /home/ahmad/.config/yambar/config-hikari.yml  
 
 include /usr/etc/sway/config.d/*
