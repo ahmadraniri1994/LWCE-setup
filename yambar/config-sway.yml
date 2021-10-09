@@ -15,7 +15,8 @@ bar:
   height: 24
   location: top 
   spacing: 5
-  margin: 3 
+  margin: 3
+  monitor: LVDS-1
 
   # Default font
   font: Adobe Helvetica:pixelsize=11
@@ -51,15 +52,15 @@ bar:
     - label:
         content:
           string:
-            on-click: grimshot save screen 
+            on-click: /home/ahmad/bin/screen-screenshot 
             text: "⚫"
             font: *awesome
-    - label:
-        content:
-          string:
-            on-click: /home/ahmad/bin/sway-select-window 
-            text: ""
-            font: *awesome
+#    - label:
+#        content:
+#          string:
+#            on-click: /home/ahmad/bin/sway-select-window 
+#            text: ""
+#            font: *awesome
     - i3:
         anchors: # Not used (directly) by f00bar; used here to avoid duplication
           - string: &i3_common {margin: 5, on-click: "swaymsg --quiet workspace {name}"}
@@ -173,6 +174,12 @@ bar:
           - string: {text: "{date}", right-margin: 5}
           - string: {text: , font: *awesome}
           - string: {text: "{time}"}
+    - label:
+        content:
+          string:
+            on-click: osmo 
+            text: 
+            font: *awesome
 #    - mpd:
 #        host: /run/mpd/socket
 #        anchors:
@@ -268,13 +275,14 @@ bar:
         name: wlp3s0
         content:
           map:
+            on-click: connman-gtk 
             tag: state
             default: {string: {text: , font: *awesome, foreground: ffffff66}}
             values:
               down: {string: {text: , font: *awesome, foreground: ff0000ff}}
               up:
                 map:
-                  on-click: foot nmtui-connect
+                  on-click: connman-gtk 
                   tag: ipv4
                   default: {string: {text: , font: *awesome}}
                   values:
@@ -284,7 +292,7 @@ bar:
         mixer: Master
         content:
           map:
-            on-click: foot pulsemixer  
+            on-click: pavucontrol  
             tag: muted
             values:
               true: {string: {text: , font: *awesome, foreground: ffffff66}}
@@ -297,9 +305,10 @@ bar:
                     - string: {text: , font: *awesome}
                     - string: {text: , font: *awesome}
                     - string: {text: , font: *awesome}
-    - backlight:
-        name: intel_backlight
-        content: [ string: {text: , font: *awesome}, string: {text: "{percent}%"}]
+#                string: {text: "{volume}"}
+#    - backlight:
+#        name: intel_backlight
+#        content: [ string: {text: , font: *awesome}, string: {text: "{percent}%"}]
     - battery:
         name: BAT0
         poll-interval: 30
@@ -338,6 +347,6 @@ bar:
     - label:
         content:
           string:
-            on-click: wlogout 
+            on-click: wlogout -p layer-shell 
             text: 
             font: *awesome
